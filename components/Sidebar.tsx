@@ -20,14 +20,14 @@ const Sidebar: NextPage = () => {
         {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
       </div>
       {showSidebar && (
-        <div className="lg:mt-28   xl:w-400 w-20 flex-col justify-start mb-10 border-r-2 border-[#3b48f7] xl:border-0  p-3 lg:fixed">
-          <div className="xl:border-b-2 border-[#3b48f7] xl:pb-4 mt-10 lg:mt-0">
+        <div className="lg:mt-28   lg:w-400 w-20 flex-col justify-start mb-10 border-r-2 border-[#3b48f7] lg:border-0  p-3 lg:fixed">
+          <div className="lg:border-b-2 border-[#3b48f7] lg:pb-4 mt-10 lg:mt-0">
             <Link href="/">
               <div className={normalLink}>
                 <p className="text-2xl">
                   <AiFillHome />
                 </p>
-                <span className="text-xl hidden xl:block">For You</span>
+                <span className="text-xl hidden lg:block">For You</span>
               </div>
             </Link>
           </div>

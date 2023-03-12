@@ -14,10 +14,10 @@ const SuggestedAccounts = () => {
   }, [fetchAllUsers]);
 
   return (
-    <div className="xl:border-b-2  border-gray-200 pb-4">
+    <div className="lg:border-b-2  border-gray-200 pb-4">
       <p
         className="text-gray-500 font-semibold m-3 mt-4 
-      hidden xl:block"
+      hidden lg:block"
       >
         Suggested Accounts
       </p>
@@ -37,7 +37,7 @@ const SuggestedAccounts = () => {
                   alt="user profile"
                 />
               </div>
-              <div className="hidden xl:block">
+              <div className="hidden lg:block">
                 <p
                   className="flex gap-1 items-center lowercase
                 "
