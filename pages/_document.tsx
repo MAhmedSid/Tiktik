@@ -26,6 +26,8 @@ export default function Document() {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#3b48f7" />
         <meta name="theme-color" content="#3b48f7" />
+        <meta name="mobile-web-app-capable" content="yes"></meta>
+      
       </Head>
       <body>
         <Main />
