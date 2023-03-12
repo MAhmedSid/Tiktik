@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import React, { useState } from "react";
 import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
-import { ImCancelCircle } from "react-icons/im";
+import { ImCancelCircle } from "react-icons/im"; 
 import Discover from "./Discover";
 import SuggestedAccounts from "./SuggestedAccounts";
 import Footer from "./Footer";
