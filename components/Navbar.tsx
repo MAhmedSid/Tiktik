@@ -29,7 +29,7 @@ const Navbar = () => {
     <div className="backdrop-blur-xl  fixed w-full lg:w-[70rem]  flex  justify-between  border-b-2 border-gray-200 py-3 px-4 z-10">
       <Link href="/" title="Tiktik logo">
         <div className="w-[100px] md:w-[130px] mr-2 md:mr-0 mt-1">
-          <Image className="cursor-pointer" src={logo} alt="TikTik" />
+          <Image priority className="cursor-pointer" src={logo} alt="TikTik" />
         </div>
       </Link>
       <div title="search from here" className=" relative hidden md:block">
