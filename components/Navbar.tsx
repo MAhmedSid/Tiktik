@@ -91,18 +91,15 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-            
-              <div className="mt-2">
-                <GoogleLogin
-                useOneTap
-                size="medium"
-                shape="circle"
-                onSuccess={(response) => createOrGetUser(response, addUser)}
-                onError={() => console.log("Error")}
-                />
-              </div>
-        
-          
+          <div className="mt-2">
+            <GoogleLogin
+              useOneTap
+              size="medium"
+              shape="circle"
+              onSuccess={(response) => createOrGetUser(response, addUser)}
+              onError={() => console.log("Error")}
+            />
+          </div>
         )}
       </div>
     </div>
