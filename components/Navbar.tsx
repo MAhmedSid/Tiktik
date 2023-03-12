@@ -26,27 +26,27 @@ const Navbar = () => {
   };
 
   return (
-    <div className="backdrop-blur-xl  fixed w-full lg:w-[80rem]  flex  justify-between  border-b-2 border-gray-200 py-3 px-4 z-10">
+    <div className="backdrop-blur-xl  fixed w-full lg:w-[70rem]  flex  justify-between  border-b-2 border-gray-200 py-3 px-4 z-10">
       <Link href="/" title="Tiktik logo">
         <div className="w-[100px] md:w-[130px] mr-2 md:mr-0 mt-1">
           <Image className="cursor-pointer" src={logo} alt="TikTik" />
         </div>
       </Link>
-      <div title="search from here" className="relative hidden md:block">
+      <div title="search from here" className=" relative hidden md:block">
         <form
           onSubmit={handleSearch}
-          className="absolute md:static top-10 -left-20 "
+          className=" absolute md:static top-10 -left-20 "
         >
           <input
             type="text"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search accounts and videos"
-            className="bg-primary p-3 md:text-md font-medium border-2  focus:outline-none focus:border-2 focus:border-[#3b48f7] w-[300px] md:w-[350px] rounded-full md;top-0"
+            className="bg-primary p-3 md:text-md font-medium  focus:outline-none   w-[300px] md:w-[20rem] rounded-full md:top-0"
           />
           <button
             onClick={handleSearch}
-            className="absolute md:right-5 right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400"
+            className="absolute md:right-5 right-6 top-3 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400"
           >
             <BiSearch />
           </button>

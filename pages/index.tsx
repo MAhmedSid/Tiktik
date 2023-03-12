@@ -11,7 +11,7 @@ interface IProps {
 
 const Home = ({ videos }: IProps) => {
   return (
-    <div className="flex flex-col mt-20 lg:mt-0 gap-10 videos h-full">
+    <div className="flex flex-col mt-20 lg:mt-0 gap-10 videos h-full overflow-scroll">
       {videos.length ? (
         videos.map((video: Video) => <VideoCard post={video} key={video._id} />)
       ) : (
