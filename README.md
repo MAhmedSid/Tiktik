@@ -36,5 +36,5 @@ If you have any feedback, please reach out to us at mahmedsiddiqui333@gmail.com
 ## Contributors
 
 - [@MAhmedSiddiqui](https://www.github.com/octokatherine)
-- [@HassanHameed](https://www.github.com/octokatherine)
+- [@HassanHameed](https://github.com/this-is-hassy)
 
