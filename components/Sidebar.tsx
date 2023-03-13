@@ -1,15 +1,25 @@
+//BuiltIn Imports
 import { NextPage } from "next";
 import Link from "next/link";
 import React, { useState } from "react";
-import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
-import { ImCancelCircle } from "react-icons/im"; 
+
+//InternalImports
 import Discover from "./Discover";
 import SuggestedAccounts from "./SuggestedAccounts";
 import Footer from "./Footer";
 
+//External Imports
+import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
+import { ImCancelCircle } from "react-icons/im";
+
 const Sidebar: NextPage = () => {
+
+  //used to create show/hide sideBar in small devices
   const [showSidebar, setShowSidebar] = useState(true);
-  const normalLink ="flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#3B48F7] rounded";
+
+  //styling for non-focused homeIcon.
+  const normalLink =
+    "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#3B48F7] rounded";
 
   return (
     <div>

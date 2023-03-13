@@ -1,25 +1,36 @@
+//BuiltIn Imports
 import { NextPage } from "next";
 import React, { useState, useRef, useEffect } from "react";
-
-import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
-import { BsPlay, BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
-import { GoVerified } from "react-icons/go";
-
-import { Video } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
 
+//Internal Imports
+import { Video } from "@/types";
+
+//External Imports
+import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
+import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
+import { GoVerified } from "react-icons/go";
+
+//Interface for assinging types to the props.
 interface IProps {
   post: Video;
 }
 
 const VideoCard: NextPage<IProps> = ({ post }) => {
+  //State for checking hover state on the video.
   const [isHover, setIsHover] = useState(false);
+
+  //State for checking playing status of the video.
   const [playing, setPlaying] = useState(false);
+
+  //State for checking volume status of the video.
   const [isVideoMuted, setIsVideoMuted] = useState(false);
 
+  //Video ref for connecting and to control video from buttons.
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  //function used to play and pause video.
   const onVideoPress = () => {
     if (playing) {
       videoRef?.current?.pause();
@@ -30,6 +41,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
     }
   };
 
+  //Effect for changing volume status.
   useEffect(() => {
     if (videoRef?.current) {
       videoRef.current.muted = isVideoMuted;

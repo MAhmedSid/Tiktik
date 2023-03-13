@@ -1,6 +1,10 @@
+//BuiltIn imports
 import React from "react";
+
+//Internal imports
 import { footerList1, footerList2, footerList3 } from "@/utils/constants";
 
+//Presentational Component for structuring multiple lists.
 const List = ({ items, mt }: { items: string[]; mt: boolean }) => (
   <div className={`flex flex-wrap gap-2 ${mt && "mt-5"}`}>
     {items.map((item) => (

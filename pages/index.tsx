@@ -1,14 +1,19 @@
-import type { NextPage } from "next";
-import axios from "axios";
+//Internal Imports
 import { Video } from "../types";
 import VideoCard from "@/components/VideoCard";
 import NoResults from "@/components/NoResults";
 import { BASE_URL } from "@/utils";
 
+//External Imports
+import axios from "axios";
+
+
+// Interface for type assigning to the video prop.
 interface IProps {
   videos: Video[];
 }
 
+//Main Component (which has videos)
 const Home = ({ videos }: IProps) => {
   return (
     <div className="flex flex-col mt-20 lg:mt-0 gap-10 videos h-full overflow-scroll">
@@ -23,6 +28,7 @@ const Home = ({ videos }: IProps) => {
   );
 };
 
+//Getting data from an api.
 export const getServerSideProps = async ({
   query: { topic },
 }: {

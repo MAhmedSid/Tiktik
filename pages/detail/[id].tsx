@@ -1,36 +1,55 @@
+//BuiltIn imports
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import { GoVerified } from "react-icons/go";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import { BsFillPlayFill } from "react-icons/bs";
-import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
-import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
-
-import { BASE_URL } from "@/utils";
-import { Video } from "@/types";
-import useAuthStore from "@/store/authStore";
-import LikeButton from "@/components/LikeButton";
-import Comments from "@/components/Comments";
 import Head from "next/head";
 
+//Internal imports
+import useAuthStore from "@/store/authStore";
+import Comments from "@/components/Comments";
+import LikeButton from "@/components/LikeButton";
+import { BASE_URL } from "@/utils";
+import { Video } from "@/types";
+
+//External imports
+import { BsFillPlayFill } from "react-icons/bs";
+import axios from "axios";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
+import { GoVerified } from "react-icons/go";
+
+//Interface for type assigning to the props.
 interface IProps {
   postDetails: Video;
 }
 
 const Detail = ({ postDetails }: IProps) => {
+  //getting userProfile for authenticating user.
   const { userProfile }: any = useAuthStore();
+
+  //State for setting received video in the video component.
   const [post, setPost] = useState(postDetails);
+
+  //State for checking playing status of the video.
   const [playing, setPlaying] = useState(false);
+
+  //State for checking volume status of the video.
   const [isVideoMuted, setIsVideoMuted] = useState(false);
+
+  //State for giving comment as a prop in Comment component.
   const [comment, setComment] = useState("");
+
+  //State for checking posting status.
   const [isPostingComment, setIsPostingComment] = useState(false);
 
+  //ref used to connect and control video from buttons.
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  //Router used in Back button to move on previous page.
   const router = useRouter();
 
+  //function for adding comment.
   const addComment = async (e: any) => {
     e.preventDefault();
     if (userProfile && comment) {
@@ -46,6 +65,7 @@ const Detail = ({ postDetails }: IProps) => {
     }
   };
 
+  //function for play/pause video onClick.
   const onVideoClick = () => {
     if (playing) {
       videoRef?.current?.pause();
@@ -56,12 +76,14 @@ const Detail = ({ postDetails }: IProps) => {
     }
   };
 
+  //effect for mute/unmute volume of the video.
   useEffect(() => {
     if (post && videoRef?.current) {
       videoRef.current.muted = isVideoMuted;
     }
   }, [post, isVideoMuted]);
 
+  //handle function for liking videos
   const handleLike = async (like: boolean) => {
     if (userProfile) {
       const { data } = await axios.put(`${BASE_URL}/api/like`, {
@@ -73,17 +95,18 @@ const Detail = ({ postDetails }: IProps) => {
     }
   };
 
+  //if fetching postDetails failed return nothing.
   if (!post) return null;
 
   return (
     <div className="flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap z-20">
-        <Head>
+      <Head>
         <title>TIKTIK - {postDetails.caption} </title>
       </Head>
       <div className="relative flex-2 w-full lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center">
         <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
           <p className="cursor-pointer" onClick={() => router.back()}>
-            <AiOutlineArrowLeft  className="text-white text-[35px] hover:text-[#3b48f7]" />
+            <AiOutlineArrowLeft className="text-white text-[35px] hover:text-[#3b48f7]" />
           </p>
         </div>
         <div className="relative">
@@ -180,6 +203,7 @@ const Detail = ({ postDetails }: IProps) => {
   );
 };
 
+//getting data form api.
 export const getServerSideProps = async ({
   params: { id },
 }: {

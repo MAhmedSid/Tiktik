@@ -1,22 +1,31 @@
-import React, { useState, useEffect } from "react";
+//BuiltIn Imports
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../utils/tiktik-logo.png";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import { useRouter } from "next/router";
 
+//Internal Imports
+import logo from "../utils/tiktik-logo.png";
 import useAuthStore from "@/store/authStore";
+import { createOrGetUser } from "@/utils";
+
+//External Imports
+import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { IoMdAdd } from "react-icons/io";
 import { GrLogout } from "react-icons/gr";
 import { BiSearch } from "react-icons/bi";
-import { useRouter } from "next/router";
-import { createOrGetUser } from "@/utils";
 
 const Navbar = () => {
+  //used for rendering searchResults on search.
   const router = useRouter();
 
+  //getting data from AuthStore.
   const { userProfile, addUser, removeUser }: any = useAuthStore();
+
+  //handling searchValue dynamically.
   const [searchValue, setSearchValue] = useState("");
 
+  //Search function for submitting search form.
   const handleSearch = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 

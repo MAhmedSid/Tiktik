@@ -1,13 +1,16 @@
+//Internal Imports
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { useRouter } from "next/router";
 import Head from "next/head";
 
+//External Imports
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 const App = ({ Component, pageProps }: AppProps) => {
+  //State for SSR checking before rendering page.
   const [isSSR, setIsSSR] = useState(true);
 
   useEffect(() => {

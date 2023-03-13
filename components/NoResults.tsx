@@ -1,7 +1,11 @@
+//BuiltIn Imports
 import React from "react";
+
+//External Imports
 import { BiCommentX } from "react-icons/bi";
 import { MdOutlineVideocamOff } from "react-icons/md";
 
+//Interface for assigning types to the props.
 interface IProps {
   text: string;
 }

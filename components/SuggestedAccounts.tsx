@@ -1,14 +1,20 @@
+//BuiltIn Imports
 import React, { useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+//Internal Imports
+import useAuthStore from "@/store/authStore";
+import { IUser } from "@/types";
+
+//External Imports
 import { GoVerified } from "react-icons/go";
 
-import useAuthStore from "@/store/authStore";
-import Link from "next/link";
-import { IUser } from "@/types";
-import Image from "next/image";
-
 const SuggestedAccounts = () => {
+  //getting data from AuthStore
   const { fetchAllUsers, allUsers } = useAuthStore();
 
+  //fetching users on every time user add.
   useEffect(() => {
     fetchAllUsers();
   }, [fetchAllUsers]);

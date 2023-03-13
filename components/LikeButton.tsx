@@ -1,8 +1,13 @@
+//BuiltIn Imports
 import React, { useState, useEffect } from "react";
-import { MdFavorite } from "react-icons/md";
 
+//Internal Imports
 import useAuthStore from "@/store/authStore";
 
+//External Imports
+import { MdFavorite } from "react-icons/md";
+
+//Interface for type assigning to the props
 interface IProps {
   likes: any[];
   handleLike: () => void;
@@ -10,10 +15,16 @@ interface IProps {
 }
 
 const LikeButton = ({ likes, handleLike, handleDislike }: IProps) => {
+  //State for user like record with specific post.
   const [alreadyLiked, setAlreadyLiked] = useState(false);
+
+  //Getting data from AuthStore
   const { userProfile }: any = useAuthStore();
+
+  //Checking how many likes have by the post.
   const filterLikes = likes?.filter((item) => item._ref === userProfile?._id);
 
+  //use to change instant like status.
   useEffect(() => {
     if (filterLikes?.length > 0) {
       setAlreadyLiked(true);

@@ -1,27 +1,39 @@
+//BuilIn Imports.
 import React, { useState } from "react";
-import { GoVerified } from "react-icons/go";
-import { MdOutlineNoAccounts } from "react-icons/md";
-
-import axios from "axios";
-
-import VideoCard from "@/components/VideoCard";
-import NoResults from "@/components/NoResults";
-import { BASE_URL } from "@/utils";
-import { IUser, Video } from "@/types";
-import Image from "next/image";
-import useAuthStore from "@/store/authStore";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import Link from "next/link";
 
+//Internal Imports.
+import useAuthStore from "@/store/authStore";
+import NoResults from "@/components/NoResults";
+import VideoCard from "@/components/VideoCard";
+import { BASE_URL } from "@/utils";
+import { IUser, Video } from "@/types";
+
+
+//External Imports.
+import { MdOutlineNoAccounts } from "react-icons/md";
+import { GoVerified } from "react-icons/go";
+import axios from "axios";
+
+
 const Search = ({ videos }: { videos: Video[] }) => {
+
+  //State for checking (has any account found with related search.)
   const [isAccounts, setIsAccounts] = useState(false);
+
+  //Using allUsers for filtering accounts process.
   const { allUsers } = useAuthStore();
+  //Using route for getting searchTerm as query for the url.
   const router = useRouter();
   const { searchTerm }: any = router.query;
 
+  //Variables for dynamic styling.
   const accounts = isAccounts ? "border-b-2 border-black" : "text-gray-400";
   const isVideos = !isAccounts ? "border-b-2 border-black" : "text-gray-400";
 
+  //Searching, is any account related to search term.
   const searchedAccounts = allUsers.filter((user: IUser) =>
     user.userName.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -99,6 +111,8 @@ const Search = ({ videos }: { videos: Video[] }) => {
   );
 };
 
+
+//Getting Data from an api.
 export const getServerSideProps = async ({
   params: { searchTerm },
 }: {

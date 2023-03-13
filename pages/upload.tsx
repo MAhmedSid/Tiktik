@@ -1,27 +1,34 @@
+//BuiltIn imports
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { FaCloudUploadAlt } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import axios from "axios";
-import { SanityAssetDocument } from "@sanity/client";
+import Head from "next/head";
 
+//Internal imports
 import useAuthStore from "@/store/authStore";
 import { client } from "../utils/client";
 import { topics } from "../utils/constants";
 import { BASE_URL } from "@/utils";
-import Head from "next/head";
+
+//External imports
+import axios from "axios";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import { SanityAssetDocument } from "@sanity/client";
 
 const Upload = () => {
+  //router for redirecting user to the homePage after uploading file.
   const router = useRouter();
 
+  //function for dynamic change caption.
   const handleChangeCaption = (e: any) => {
     setCaption(e.target.value);
   };
 
+  //function for dynamic change category.
   const handleChangeCategory = (e: any) => {
     setCategory(e.target.value);
   };
 
+  //function for posting uploaded content and saving in dataBase.
   const handlePost = async () => {
     if (caption && videoAsset?._id && category) {
       setSavingPost(true);
@@ -48,16 +55,30 @@ const Upload = () => {
     }
   };
 
+  //getting userProfile to authenticate user.
   const { userProfile }: { userProfile: any } = useAuthStore();
+
+  //State for setting loading status.
   const [isLoading, setIsLoading] = useState(false);
+
+  //State for setting wrong file status.
   const [wrongFileType, setWrongFileType] = useState(false);
+
+  //State for checking video upload status to the server.
   const [videoAsset, setVideoAsset] = useState<
     SanityAssetDocument | undefined
   >();
+
+  //handling caption value dynamically.
   const [caption, setCaption] = useState("");
+
+  //handling caption value dynamically.
   const [category, setCategory] = useState(topics[0]);
+
+  //State for checking save status of the uploaded content
   const [savingPost, setSavingPost] = useState(false);
 
+  //function for uploading video.
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
     const fileTypes = ["video/mp4", "video/webm", "video/ogg"];
@@ -77,6 +98,21 @@ const Upload = () => {
       setWrongFileType(true);
     }
   };
+
+  //used to put in dependency array of effect(used for redirecting non logged user to the previous a page)
+  const [isUserActive, setIsUserActive] = useState(true);
+
+  //function for redirecting user to the previous page from upload page.
+  const redirectUser = () => {
+    if (userProfile === null) {
+      router.back();
+    }
+  };
+
+  //effect which runs redirectUser function on logging out.
+  useEffect(() => {
+    redirectUser();
+  }, [isUserActive, userProfile]);
 
   return (
     <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-[#f8f8f8] justify-center">

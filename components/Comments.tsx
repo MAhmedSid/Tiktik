@@ -1,12 +1,17 @@
-import useAuthStore from "@/store/authStore";
-import { IUser } from "@/types";
+//BuiltIn Imports
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, Dispatch, SetStateAction } from "react";
-import { GoVerified } from "react-icons/go";
+import React, { Dispatch, SetStateAction } from "react";
 
+//Internal Imports
+import { IUser } from "@/types";
+import useAuthStore from "@/store/authStore";
 import NoResult from "./NoResults";
 
+//External Imports
+import { GoVerified } from "react-icons/go";
+
+//Interface for assinging types to the props.
 interface IProps {
   isPostingComment: Boolean;
   comment: string;
@@ -15,6 +20,7 @@ interface IProps {
   comments: IComment[];
 }
 
+//Interface for assigning type to the comment.
 interface IComment {
   comment: string;
   length?: number;
@@ -29,7 +35,9 @@ const Comments = ({
   comments,
   isPostingComment,
 }: IProps) => {
+  //Getting data from AuthStore
   const { userProfile, allUsers }: any = useAuthStore();
+
   return (
     <div className="border-t-2 border-gray-200 pt-4 px-10 bg-[#f8f8f8] border-b-2 lg:pb-0 pb-[100px]">
       <div className="overflow-scroll  lg:h-[455px]">

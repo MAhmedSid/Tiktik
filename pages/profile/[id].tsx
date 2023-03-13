@@ -1,14 +1,19 @@
+//BuiltIn imports
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
+import Image from "next/image";
+
+//Internal imports
+import NoResults from "@/components/NoResults";
+import VideoCard from "@/components/VideoCard";
+import { BASE_URL } from "@/utils";
+import { IUser, Video } from "@/types";
+
+//External imports
 import { GoVerified } from "react-icons/go";
 import axios from "axios";
 
-import VideoCard from "@/components/VideoCard";
-import NoResults from "@/components/NoResults";
-import { BASE_URL } from "@/utils";
-import { IUser, Video } from "@/types";
-import Image from "next/image";
-import Head from "next/head";
-
+//Interface for type assigning to the props.
 interface IProps {
   data: {
     user: IUser;
@@ -18,13 +23,19 @@ interface IProps {
 }
 
 const Profile = ({ data }: IProps) => {
+  //destructuring data from data.
   const { user, userVideos, userLikedVideos } = data;
+  //State for dynamic changing between userVideos and userLikedVideos
   const [showUserVideos, setShowUserVideos] = useState(true);
+
+  //State for dynamic changing videoArray Content.
   const [videosList, setVideosList] = useState<Video[]>([]);
 
+  //Styling for dynamic changing styles.
   const videos = showUserVideos ? "border-b-2 border-black" : "text-gray-400";
   const liked = !showUserVideos ? "border-b-2 border-black" : "text-gray-400";
 
+  //effect for dynamic change video content.
   useEffect(() => {
     if (showUserVideos) {
       setVideosList(userVideos);
@@ -32,8 +43,6 @@ const Profile = ({ data }: IProps) => {
       setVideosList(userLikedVideos);
     }
   }, [showUserVideos, userLikedVideos, userVideos]);
-
-  console.log(userVideos);
 
   return (
     <div className="w-full mt-20 lg:mt-0">
@@ -95,6 +104,7 @@ const Profile = ({ data }: IProps) => {
   );
 };
 
+//getting data from an api.
 export const getServerSideProps = async ({
   params: { id },
 }: {
