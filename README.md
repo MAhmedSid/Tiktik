@@ -23,7 +23,7 @@ visit to the app with this link : https://tiktikpremium.vercel.app
 
 ## Tech Stack
 
-**Client:** React, Next JS, TailwindCSS, Zustand 
+**Client:** React, Next JS, TailwindCSS, Zustand , TypeScript
 
 **Server:** Node, Sanity (database)
 
